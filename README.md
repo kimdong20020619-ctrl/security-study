@@ -3,12 +3,14 @@
 보안 공부 기록 레포지토리
 
 ## 목표
+- 보안관제 취업 (1차)
 - CERT / 악성코드 분석가 (장기)
 
 ## 진행 중
 - [ ] TryHackMe Pre-Security Path
 
 ## 폴더 구조
+| 폴더 | 내용 |
 |------|------|
 | `tryhackme/` | TryHackMe 학습 정리 |
 | `network/` | 네트워크 개념 정리 |
