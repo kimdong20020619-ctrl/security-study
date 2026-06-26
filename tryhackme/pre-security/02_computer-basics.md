@@ -130,22 +130,16 @@ UEFI는 운영 체제 부팅 루틴을 찾기 위해 어떤 장치를 먼저 찾
 - 포트는 시스템에서 실행 중인 특정 서비스를 식별하는 데 사용
 - 클라이언트가 서버의 서비스에 액세스하려면 올바른 포트를 사용하여 연결해야 한다.
 
-### 5. DNS (Domain Name Service)
+### 5. DNS (Domain Name System)
 
-- Domain Name Service의 약자로 GPS와 유사하게 작동한다.
+- Domain Name System의 약자로 GPS와 유사하게 작동한다.
 - 웹사이트 이름을 입력하면, DNS가 이를 서버의 위치로 해석
 - 위치 좌표를 **인터넷 프로토콜(IP) 주소**라고 한다.
 - 이 IP 주소를 집 주소(도로명, 집 번호, 우편번호, 도시, 국가)라고 생각하면 컴퓨터 시스템을 위한 주소라고 이해할 수 있다.
 
 ### HTTP 명령어
 
-| 명령어 | 명령어 | 명령어 |
-|--------|--------|--------|
-| GET | POST | PUT |
-| DELETE | PATCH | HEAD |
-| OPTIONS | CONNECT | TRACE |
-
-총 9개 명령어
+총 9개: `GET` `POST` `PUT` `DELETE` `PATCH` `HEAD` `OPTIONS` `CONNECT` `TRACE`
 
 ### HTTP 요청 구성 요소
 
