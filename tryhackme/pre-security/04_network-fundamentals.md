@@ -583,3 +583,116 @@ try {
 | **반복문** | `while (조건) {}` |
 
 > 다음 섹션: **SQL 기초** (관계형 데이터베이스 쿼리 언어)
+
+---
+
+## 섹션 5 — SQL 기초 (Database SQL Basics)
+
+---
+
+### Task 2 — 테이블, 행, 열 이해하기
+
+#### 데이터베이스란?
+
+데이터베이스는 컴퓨터가 정보를 **체계적으로 저장**하는 디지털 저장소이다.  
+종이 노트와 달리 데이터베이스는 수천 건의 데이터에서도 몇 초 만에 검색·계산·정렬이 가능하다.
+
+#### 테이블 (Table)
+
+데이터베이스 내부에서 정보는 **테이블**에 저장된다. 테이블은 행과 열로 구성된 스프레드시트와 같다.
+
+| 구성 요소 | 설명 |
+|----------|------|
+| **열 (Column)** | 테이블 맨 위의 제목. 한 가지 유형의 정보를 저장 (예: 가격, 음료명) |
+| **행 (Row)** | 가로 방향의 한 줄. 하나의 완전한 정보 세트 (예: 주문 1건) |
+
+**카페 예시 테이블**
+
+| id | drink | price | time |
+|:--:|-------|:-----:|------|
+| 1 | Coffee | 2.00 | 11:00 AM |
+| 2 | Tea | 1.50 | 11:10 AM |
+| 3 | Muffin | 2.50 | 11:15 AM |
+
+- 열(Column): id, drink, price, time — 각 정보의 종류
+- 행(Row): 카페 주문 1건 = 1행
+- 주문 1건 추가 → 행 1개 추가 / 주문 삭제 → 해당 행만 삭제
+
+#### SQL이란?
+
+- **SQL** (Structured Query Language): 데이터베이스에 질문하기 위해 사용하는 언어
+- SQL로 작성된 질문을 **쿼리 (Query)** 라고 한다
+- 쿼리는 데이터를 **변경하지 않는다** — 단지 요청한 정보를 표시할 뿐
+
+---
+
+### Task 3 — 첫 SQL 쿼리 작성하기
+
+실습 테이블 구조:
+- `Orders` (id, drink, price, time) — 주문 내역
+- `Menu` (drink, price) — 메뉴 목록
+
+#### 1단계: 모든 데이터 조회 (SELECT + FROM)
+
+```sql
+SELECT * FROM Orders;
+```
+
+- `SELECT *` : 모든 열(`*`)을 선택
+- `FROM Orders` : Orders 테이블에서 데이터를 가져옴
+- Orders 테이블의 **모든 행과 열**이 표시됨
+
+#### 2단계: 특정 열만 표시
+
+```sql
+SELECT drink, price FROM Orders;
+```
+
+- `SELECT` 뒤에 원하는 열 이름을 나열
+- `drink`와 `price` 열만 표시됨 (id, time 제외)
+
+#### 3단계: 결과 필터링 (WHERE)
+
+```sql
+SELECT * FROM Orders WHERE drink = 'Coffee';
+```
+
+- `WHERE` 조건에 맞는 행만 필터링
+- Coffee 주문 행만 표시됨
+- 메뉴 이름 확인이 필요할 때: `SELECT * FROM Menu;`
+
+#### 4단계: 결과 정렬 (ORDER BY)
+
+```sql
+-- 가격 오름차순 (낮은 → 높은)
+SELECT * FROM Orders ORDER BY price;
+
+-- 가격 내림차순 (높은 → 낮은)
+SELECT * FROM Orders ORDER BY price DESC;
+```
+
+- `ORDER BY 열이름` : 오름차순 정렬 (기본값)
+- `ORDER BY 열이름 DESC` : 내림차순 정렬 (`DESC` = descending)
+
+---
+
+### 섹션 5 요약
+
+| SQL 명령어 | 역할 | 예시 |
+|-----------|------|------|
+| `SELECT` | 표시할 열 선택 (`*`=전체) | `SELECT drink, price` |
+| `FROM` | 데이터를 가져올 테이블 지정 | `FROM Orders` |
+| `WHERE` | 조건에 맞는 행만 필터링 | `WHERE drink = 'Coffee'` |
+| `ORDER BY` | 특정 열 기준으로 정렬 | `ORDER BY price DESC` |
+
+**핵심 개념**
+
+| 용어 | 설명 |
+|------|------|
+| **데이터베이스** | 정보를 체계적으로 저장하는 디지털 저장소 |
+| **테이블** | 행과 열로 구성된 데이터 저장 구조 |
+| **열 (Column)** | 한 가지 유형의 정보 (예: 가격) |
+| **행 (Row)** | 하나의 완전한 레코드 (예: 주문 1건) |
+| **쿼리 (Query)** | SQL로 작성된 데이터베이스 질문 |
+
+> **보안 관점**: 허가 없이 주문을 변경·삭제할 수 있다면? → SQL Injection 취약점의 시작
