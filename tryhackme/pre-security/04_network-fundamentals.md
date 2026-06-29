@@ -278,3 +278,148 @@ ASCII와 ISO-8859의 한계를 극복하기 위해 등장한 **범용 문자 인
 | **UTF-8** | 1~4바이트 가변, ASCII 하위 호환, 현대 웹 표준 |
 | **UTF-16** | 2~4바이트 가변, Windows 내부 사용 |
 | **UTF-32** | 항상 4바이트 고정, 단순하지만 비효율적 |
+
+---
+
+## 섹션 3 — Python 기초: 숫자 맞추기 게임 (Python: Simple Demo)
+
+이 섹션은 Python의 핵심 개념 3가지를 간단한 "숫자 맞추기 게임"을 통해 소개한다.
+
+**핵심 개념 3가지**: 변수 (Variables) / 조건문 (Conditional Statements) / 반복문 (Iterations)
+
+---
+
+### Task 2 — 변수 (Variables)
+
+변수를 사용하면 값을 저장하고 나중에 이름으로 참조할 수 있다.
+
+#### 주요 함수
+
+| 함수 | 설명 | 반환값 |
+|------|------|--------|
+| `random.randint(a, b)` | a 이상 b 이하의 무작위 정수 반환 | 정수 |
+| `input(prompt)` | 사용자 입력을 받음 | 문자열 (string) |
+| `int(text)` | 문자열을 정수로 변환 | 정수 |
+| `print(...)` | 화면에 텍스트 출력 | 없음 |
+
+#### 초기 변수 설정 코드
+
+```python
+import random  # 난수 생성 도구
+
+secret = random.randint(1, 20)  # 1~20 사이 비밀 숫자
+tries = 0    # 시도 횟수 카운터
+guess = 0    # 초기값 — 1~20 밖의 값으로 설정 (비밀 숫자가 될 수 없음)
+
+print("I'm thinking of a number between 1 and 20")
+
+text = input("Take a guess: ")   # 사용자 입력 → 문자열
+guess = int(text)                 # 문자열 → 정수 변환
+tries = tries + 1                 # 시도 횟수 1 증가
+```
+
+> `input()`은 항상 **문자열**을 반환한다. 숫자 비교를 하려면 반드시 `int()`로 변환해야 한다.
+
+---
+
+### Task 3 — 조건문 (Conditional Statements)
+
+#### if / elif / else 구조
+
+Python에서 "else if"는 `elif`로 작성한다.
+
+```python
+if guess < 1 or guess > 20:
+    print("That number is out of range. Try again.")
+elif guess < secret:
+    print("Too low, try again.")
+elif guess > secret:
+    print("Too high, try again.")
+else:
+    print("You got it in", tries, "tries!")
+```
+
+#### 동작 원리
+
+| 조건 | 출력 메시지 |
+|------|------------|
+| guess < 1 또는 guess > 20 | "That number is out of range." |
+| guess < secret | "Too low, try again." |
+| guess > secret | "Too high, try again." |
+| 위 조건 모두 거짓 (= guess == secret) | "You got it in N tries!" |
+
+**핵심**: `if` 조건이 참이면 해당 블록 실행 후 나머지 `elif` / `else`는 건너뜀.  
+이전 조건이 모두 거짓일 때만 다음 `elif` 조건을 확인한다.
+
+---
+
+### Task 4 — 반복문 (Iterations)
+
+한 번만 시도하는 게임을 정답을 맞출 때까지 계속 반복되게 만들기 위해 **while 루프**를 사용한다.
+
+- `!=` : "같지 않다 (does not equal)"
+- `while 조건:` 형태 — 조건이 참인 동안 블록 내 코드를 반복 실행
+
+```python
+while guess != secret:
+    text = input("Take a guess: ")
+    guess = int(text)
+    tries = tries + 1
+
+    if guess < 1 or guess > 20:
+        print("That number is out of range. Try again.")
+    elif guess < secret:
+        print("Too low, try again.")
+    elif guess > secret:
+        print("Too high, try again.")
+    else:
+        print("You got it in", tries, "tries!")
+```
+
+#### while 루프 흐름
+
+```
+조건 확인: guess != secret
+    ↓ 참(True)
+코드 블록 실행 → 입력 → 힌트 출력 → 다시 조건 확인
+    ↓ 거짓(False, guess == secret)
+루프 종료
+```
+
+#### 완성된 프로그램 (guess_v3.py)
+
+```python
+import random
+
+secret = random.randint(1, 20)
+tries = 0
+guess = 0
+
+print("I'm thinking of a number between 1 and 20")
+
+while guess != secret:
+    text = input("Take a guess: ")
+    guess = int(text)
+    tries = tries + 1
+
+    if guess < 1 or guess > 20:
+        print("That number is out of range. Try again.")
+    elif guess < secret:
+        print("Too low, try again.")
+    elif guess > secret:
+        print("Too high, try again.")
+    else:
+        print("You got it in", tries, "tries!")
+```
+
+---
+
+### 섹션 3 요약
+
+| 개념 | Python 문법 | 설명 |
+|------|------------|------|
+| **변수** | `x = 값` | 값을 저장하고 이름으로 참조 |
+| **조건문** | `if / elif / else` | 조건에 따라 다른 코드 블록 실행 |
+| **else if** | `elif` | Python의 "else if" 표현 |
+| **반복문** | `while 조건:` | 조건이 참인 동안 코드 반복 실행 |
+| **같지 않다** | `!=` | "does not equal" 비교 연산자 |
