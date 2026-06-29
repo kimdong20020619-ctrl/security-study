@@ -423,3 +423,163 @@ while guess != secret:
 | **else if** | `elif` | Python의 "else if" 표현 |
 | **반복문** | `while 조건:` | 조건이 참인 동안 코드 반복 실행 |
 | **같지 않다** | `!=` | "does not equal" 비교 연산자 |
+
+---
+
+## 섹션 4 — JavaScript 기초: 숫자 맞추기 게임 (JavaScript: Simple Demo)
+
+섹션 3의 Python 숫자 맞추기 게임과 **동일한 프로그램**을 JavaScript로 구현한다.  
+**실행 환경**: Node.js (`node 파일명.js` 명령어로 실행)
+
+---
+
+### Task 2 — 변수와 상수 (Variables & Constants)
+
+JavaScript는 변수(`let`)와 상수(`const`)를 키워드로 구분한다.
+
+| 키워드 | 용도 | 예시 |
+|--------|------|------|
+| `let` | 값이 변경될 수 있는 변수 | `let tries = 0;` |
+| `const` | 값이 변경되지 않는 상수 | `const secret = ...;` |
+| `console.log()` | 화면에 텍스트 출력 | `console.log("Hello")` |
+
+**난수 생성 원리: `Math.floor(Math.random() * 20) + 1`**
+
+| 단계 | 연산 | 결과 예시 |
+|------|------|----------|
+| `Math.random()` | 0 이상 1 미만의 소수 반환 | 0.372 |
+| `× 20` | 범위를 0~20으로 확장 | 7.44 |
+| `Math.floor()` | 소수점 버림 | 7 |
+| `+ 1` | 범위를 1~20으로 이동 | 8 |
+
+```javascript
+let tries = 0;
+let guess = 0;
+const secret = Math.floor(Math.random() * 20) + 1;
+
+console.log("I'm thinking of a number between 1 and 20");
+```
+
+---
+
+### Task 3 — 사용자 입력 (User Input)
+
+```javascript
+const text = await rl.question("Take a guess: ");  // 사용자 입력 → 문자열
+guess = parseInt(text, 10);                          // 문자열 → 정수(10진수) 변환
+tries = tries + 1;
+```
+
+> `parseInt(text, 10)` 의 두 번째 인자 `10`은 **10진수**로 변환하겠다는 의미이다.
+
+---
+
+### Task 4 — 조건문 (Conditional Statements)
+
+JavaScript는 `else if`를 사용한다 (Python의 `elif`와 다름). 코드 블록은 `{}` 중괄호로 묶는다.
+
+```javascript
+if (guess < 1 || guess > 20) {
+    console.log("That number is out of range. Try again.");
+} else if (guess < secret) {
+    console.log("Too low, try again.");
+} else if (guess > secret) {
+    console.log("Too high, try again.");
+} else {
+    console.log("You got it in", tries, "tries!");
+}
+```
+
+> `||` 는 JavaScript에서 "또는 (OR)"을 의미한다.
+
+---
+
+### Task 5 — 반복문 (Iterations)
+
+JavaScript에서 "같지 않음"은 `!==`으로 표현한다 (Python의 `!=`와 다름).
+
+```javascript
+while (guess !== secret) {
+    const text = await rl.question("Take a guess: ");
+    guess = parseInt(text, 10);
+    tries = tries + 1;
+
+    if (guess < 1 || guess > 20) {
+        console.log("That number is out of range. Try again.");
+    } else if (guess < secret) {
+        console.log("Too low, try again.");
+    } else if (guess > secret) {
+        console.log("Too high, try again.");
+    } else {
+        console.log("You got it in", tries, "tries!");
+    }
+}
+```
+
+#### 완성된 프로그램 (guess_v3.js)
+
+```javascript
+import * as readline from "node:readline/promises";
+import { stdin as input, stdout as output } from "node:process";
+const rl = readline.createInterface({ input, output });
+
+try {
+    const secret = Math.floor(Math.random() * 20) + 1;
+    let tries = 0;
+    let guess = 0;
+
+    console.log("I'm thinking of a number between 1 and 20");
+
+    while (guess !== secret) {
+        const text = await rl.question("Take a guess: ");
+        guess = parseInt(text, 10);
+        tries = tries + 1;
+
+        if (guess < 1 || guess > 20) {
+            console.log("That number is out of range. Try again.");
+        } else if (guess < secret) {
+            console.log("Too low, try again.");
+        } else if (guess > secret) {
+            console.log("Too high, try again.");
+        } else {
+            console.log("You got it in", tries, "tries!");
+        }
+    }
+} finally {
+    rl.close();
+}
+```
+
+---
+
+### Python vs JavaScript 비교표
+
+| 개념 | Python | JavaScript |
+|------|--------|------------|
+| **변수 선언** | `x = 값` | `let x = 값;` |
+| **상수 선언** | 관례로 대문자 사용 | `const x = 값;` |
+| **출력** | `print(...)` | `console.log(...)` |
+| **사용자 입력** | `input("...")` | `await rl.question("...")` |
+| **문자열 → 정수** | `int(text)` | `parseInt(text, 10)` |
+| **난수 생성** | `random.randint(1, 20)` | `Math.floor(Math.random() * 20) + 1` |
+| **else if** | `elif` | `else if` |
+| **OR 연산자** | `or` | `\|\|` |
+| **같지 않음** | `!=` | `!==` |
+| **코드 블록** | 들여쓰기 (indentation) | `{}` 중괄호 |
+| **문장 끝** | 없음 | `;` 세미콜론 |
+
+---
+
+### 섹션 4 요약
+
+| 개념 | JavaScript 문법 |
+|------|----------------|
+| **변수** | `let x = 값;` |
+| **상수** | `const x = 값;` |
+| **출력** | `console.log(...)` |
+| **OR 연산자** | `\|\|` |
+| **조건문** | `if / else if / else` + `{}` |
+| **같지 않음** | `!==` |
+| **반복문** | `while (조건) {}` |
+
+> 다음 섹션: **SQL 기초** (관계형 데이터베이스 쿼리 언어)
