@@ -1,6 +1,6 @@
 # Security Study
 
-보안 공부 기록 레포지토리 | 기준일: 2026-06-26
+보안 공부 기록 레포지토리 | 기준일: 2026-06-28
 
 ---
 
@@ -42,8 +42,8 @@
 |------|------|------|
 | 1 | 사이버 보안 소개 (Cyber Security Intro) | ✅ 완료 |
 | 2 | 컴퓨터 기초 (Computer Basics) | ✅ 완료 |
-| 3 | 운영 체제 기초 (Operating Systems Basics) | 🔄 진행 중 (섹션 1~2 완료) |
-| 4 | 네트워크 기초 (Network Fundamentals) | ⬜ 예정 |
+| 3 | 운영 체제 기초 (Operating Systems Basics) | ✅ 완료 |
+| 4 | 네트워크 기초 (Network Fundamentals) | 🔄 진행 중 (섹션 1 완료) |
 | 5 | 웹 동작 원리 (How The Web Works) | ⬜ 예정 |
 | 6 | Linux 기초 (Linux Fundamentals) | ⬜ 예정 |
 | 7 | Windows 기초 (Windows Fundamentals) | ⬜ 예정 |
@@ -92,9 +92,9 @@ Malware Analysis 모듈 (악성코드 분석)
 ## 현재 진행 현황
 
 - **학습 플랫폼**: TryHackMe (연간 구독, 학생 할인 적용)
-- **진행 모듈**: Pre-Security Path — 모듈 3 운영 체제 기초 진행 중
+- **진행 모듈**: Pre-Security Path — 모듈 4 네트워크 기초 진행 중 (섹션 1 완료)
 - **학습 일정**: 평일 + 일요일 (토요일 제외)
-- **다음 세션**: 모듈 3 나머지 섹션 (일요일 재개)
+- **진행 속도**: 하루 평균 3~4섹션 / 7월 중순 전후 Pre-Security 완료 예상
 
 ---
 
