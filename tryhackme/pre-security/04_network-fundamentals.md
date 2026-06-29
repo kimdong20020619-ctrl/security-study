@@ -696,3 +696,40 @@ SELECT * FROM Orders ORDER BY price DESC;
 | **쿼리 (Query)** | SQL로 작성된 데이터베이스 질문 |
 
 > **보안 관점**: 허가 없이 주문을 변경·삭제할 수 있다면? → SQL Injection 취약점의 시작
+
+---
+
+## 실습 기록
+
+### 실습 1 — Python 숫자 맞추기 게임 (guess_v3.py)
+
+**목표**: 변수·조건문·반복문을 단계적으로 추가하며 완성된 Python 프로그램 실행
+
+- Task 2: 변수와 `input()` 기초 코드 작성
+- Task 3: `if / elif / else` 조건문 추가
+- Task 4: `while` 반복문 추가 → `guess_v3.py` 완성 및 실행
+
+---
+
+### 실습 2 — JavaScript 숫자 맞추기 게임 (guess_v3.js)
+
+**목표**: Python 게임과 동일한 로직을 JavaScript 문법으로 구현하고 Node.js로 실행
+
+- Task 2: `let` / `const`, `Math.random()` 난수 생성
+- Task 3: `await rl.question()` 사용자 입력 처리
+- Task 4: `if / else if / else`, `||` 조건문 추가
+- Task 5: `while (guess !== secret)` 반복문 추가 → `guess_v3.js` 완성 및 실행 (`node guess_v3.js`)
+
+---
+
+### 실습 3 — SQL 쿼리 작성 (Orders / Menu 테이블)
+
+**목표**: TryHackMe 내장 데이터베이스에서 기본 SQL 쿼리 작성 및 실행
+
+```sql
+SELECT * FROM Orders;                          -- 모든 주문 조회
+SELECT drink, price FROM Orders;               -- 특정 열만 조회
+SELECT * FROM Orders WHERE drink = 'Coffee';   -- 조건 필터링
+SELECT * FROM Orders ORDER BY price;           -- 가격 오름차순 정렬
+SELECT * FROM Orders ORDER BY price DESC;      -- 가격 내림차순 정렬
+```
