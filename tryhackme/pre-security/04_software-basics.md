@@ -709,6 +709,11 @@ SELECT * FROM Orders ORDER BY price DESC;
 - Task 3: `if / elif / else` 조건문 추가
 - Task 4: `while` 반복문 추가 → `guess_v3.py` 완성 및 실행
 
+**배운 점**
+1. `input()`은 항상 문자열을 반환한다. 숫자 비교를 하려면 반드시 `int()`로 변환해야 한다. 타입 변환은 Python뿐 아니라 모든 프로그래밍 언어에서 흔히 발생하는 필수 개념이다.
+2. `if / elif / else` 구조는 위에서 아래로 순서대로 조건을 평가하며, 이전 조건이 참이면 나머지는 건너뛴다. 조건의 순서 자체가 로직에 영향을 주기 때문에 순서를 잘못 작성하면 의도치 않은 결과가 나온다.
+3. `while` 반복문은 조건이 거짓이 될 때까지 계속 실행된다. 이번 게임에서는 `guess != secret`이 거짓이 되는 순간(정답을 맞춘 순간)에만 루프가 종료된다. 무한 루프가 되지 않으려면 루프 안에서 조건 변수가 반드시 변경되어야 한다.
+
 ---
 
 ### 실습 2 — JavaScript 숫자 맞추기 게임 (guess_v3.js)
@@ -719,6 +724,11 @@ SELECT * FROM Orders ORDER BY price DESC;
 - Task 3: `await rl.question()` 사용자 입력 처리
 - Task 4: `if / else if / else`, `||` 조건문 추가
 - Task 5: `while (guess !== secret)` 반복문 추가 → `guess_v3.js` 완성 및 실행 (`node guess_v3.js`)
+
+**배운 점**
+1. Python과 JavaScript는 같은 로직을 구현해도 문법이 다르다. `elif` → `else if`, `!=` → `!==`, 블록 구분을 들여쓰기 대신 `{}`로 한다. 언어마다 표현 방식이 달라도 변수·조건·반복이라는 핵심 개념은 동일하다.
+2. `parseInt(text, 10)`의 두 번째 인자 `10`은 10진수로 변환하겠다는 의미다. 명시하지 않으면 일부 상황에서 의도치 않은 진법으로 해석될 수 있어, 명시적으로 기재하는 것이 안전하다.
+3. `Math.floor(Math.random() * 20) + 1` 같은 수식은 처음 보면 복잡해 보이지만 단계별로 분해하면 `0~1 범위 → 0~20으로 확장 → 소수점 버림 → 1 더함`이라는 간단한 논리다. 복잡해 보이는 식도 단계별로 분해하는 습관이 중요하다.
 
 ---
 
@@ -733,3 +743,8 @@ SELECT * FROM Orders WHERE drink = 'Coffee';   -- 조건 필터링
 SELECT * FROM Orders ORDER BY price;           -- 가격 오름차순 정렬
 SELECT * FROM Orders ORDER BY price DESC;      -- 가격 내림차순 정렬
 ```
+
+**배운 점**
+1. `SELECT`는 데이터를 읽기만 하고 변경하지 않는다. 쿼리를 잘못 작성해도 데이터가 손상될 위험이 없어서 SQL 입문 시 가장 먼저 익히기에 안전한 명령어다.
+2. `WHERE` 절로 조건에 맞는 행만 걸러낸다. 문자열 조건 검색 시 반드시 작은따옴표(`'`)를 사용한다(`WHERE drink = 'Coffee'`). 따옴표를 빠뜨리면 오류가 발생한다.
+3. `ORDER BY 열이름 DESC`로 내림차순 정렬, `ORDER BY 열이름`만 쓰면 기본값인 오름차순(ASC)으로 정렬된다. SQL은 기본값이 있어 모든 키워드를 외우지 않아도 동작하는 경우가 많다.
