@@ -1,4 +1,4 @@
-# 모듈 5 — Intro to Networking (네트워킹 기초)
+# 모듈 5 — 네트워크 기초 (Network Fundamentals)
 
 ---
 

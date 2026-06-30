@@ -1,4 +1,4 @@
-# 모듈 4 — 네트워크 기초 (Network Fundamentals)
+# 모듈 4 — 소프트웨어 기초 (Software Basics)
 
 ---
 
