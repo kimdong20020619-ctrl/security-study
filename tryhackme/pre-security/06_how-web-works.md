@@ -437,3 +437,517 @@ HTTP는 **상태 비저장(Stateless)** 프로토콜이다. 각 요청은 독립
 1. HTTP 메서드(GET/POST/PUT/DELETE)는 단순한 이름 규칙이 아니라 **서버가 요청을 처리하는 동작 자체**를 결정한다. 같은 경로(`/user/1`)라도 GET은 조회, DELETE는 삭제라는 전혀 다른 동작이 수행된다. 서버가 메서드를 제대로 검증하지 않으면 허가받지 않은 삭제나 수정이 발생할 수 있다.
 2. GET 요청의 쿼리 문자열(`?id=1`)은 URL에 포함되어 브라우저 주소창, 서버 로그, 공유 링크에 그대로 노출된다. 반면 POST 요청의 본문(Body) 데이터는 URL에 노출되지 않는다. 비밀번호나 토큰 같은 민감한 데이터를 URL에 담지 않아야 하는 이유가 바로 이 차이에 있다.
 3. `/login`에 POST로 `username=thm&password=letmein`을 전송해 인증에 성공했다. 이 과정은 실제 로그인 폼을 제출할 때 브라우저가 내부적으로 수행하는 동작과 동일하다. 공격자는 이 요청을 직접 조작해 자동화된 로그인 시도(Brute Force)를 수행할 수 있으므로, 로그인 엔드포인트에는 속도 제한(Rate Limiting)과 계정 잠금 정책이 반드시 필요하다.
+
+---
+
+## 웹사이트 작동 방식 (How Websites Work)
+
+---
+
+## 섹션 11 — 웹사이트의 두 가지 구성 요소 (Frontend & Backend)
+
+웹사이트를 방문하면 브라우저가 웹 서버에 요청을 보내고, 서버는 페이지를 표시하는 데 필요한 데이터를 응답으로 돌려준다.
+
+```
+브라우저 (Browser)
+    ↕ Request / Response
+인터넷 (Internet)
+    ↕ Request / Response
+웹 서버 (Server)
+```
+
+웹사이트는 크게 두 가지 구성 요소로 이루어진다:
+
+| 구성 요소 | 역할 | 실행 위치 |
+|----------|------|----------|
+| **프런트엔드 (Frontend, 클라이언트 측)** | 브라우저가 웹사이트를 렌더링하는 방식 | 사용자의 브라우저 |
+| **백엔드 (Backend, 서버 측)** | 사용자의 요청을 처리하고 응답을 반환 | 웹 서버 |
+
+> 웹 서버는 전 세계 어딘가에 있는, 사용자의 요청을 처리하는 전용 컴퓨터다.
+
+---
+
+## 섹션 12 — HTML
+
+웹사이트는 주로 세 가지 기술로 만들어진다:
+
+| 기술 | 역할 |
+|------|------|
+| **HTML** | 웹사이트의 구조와 콘텐츠 정의 |
+| **CSS** | 웹사이트의 시각적 스타일링 (색상, 폰트, 레이아웃 등) |
+| **JavaScript** | 페이지에 상호작용 기능 추가 |
+
+**HTML (HyperText Markup Language)** = 웹사이트를 작성하는 언어. 엘리먼트(태그)가 빌딩 블록 역할을 하며 브라우저에게 콘텐츠를 어떻게 표시할지 알려준다.
+
+### HTML 기본 구조
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Page Title</title>
+  </head>
+  <body>
+    <h1>Example Heading</h1>
+    <p>Example paragraph.</p>
+  </body>
+</html>
+```
+
+### 주요 태그 설명
+
+| 태그 | 역할 |
+|------|------|
+| `<!DOCTYPE html>` | HTML5 문서 선언. 브라우저에게 HTML5 표준으로 해석하라는 지시 |
+| `<html>` | HTML 페이지의 루트(최상위) 요소. 모든 요소가 이 안에 들어간다 |
+| `<head>` | 페이지 정보 포함 (타이틀, 스타일시트 링크 등). 화면에 직접 표시되지 않음 |
+| `<body>` | 문서 본문. **body 내부 콘텐츠만 브라우저 화면에 표시된다** |
+| `<h1>` | 대형 제목 (h1이 가장 크고 h6이 가장 작다) |
+| `<p>` | 단락(문단) |
+| `<button>` | 클릭 가능한 버튼 |
+| `<img>` | 이미지 |
+
+### 태그 속성 (Attributes)
+
+태그에는 추가 정보를 담는 **속성**을 붙일 수 있다.
+
+```html
+<!-- class 속성: 스타일 적용 (여러 요소가 같은 class 공유 가능) -->
+<p class="bold-text">굵은 텍스트</p>
+
+<!-- src 속성: 이미지 파일 경로 지정 -->
+<img src="img/cat.jpg">
+
+<!-- 여러 속성을 동시에 사용 가능 -->
+<p attribute1="value1" attribute2="value2">내용</p>
+```
+
+### id 속성 — class와의 차이
+
+```html
+<p id="example">이 요소의 고유 ID는 "example"이다</p>
+```
+
+| 속성 | 특징 |
+|------|------|
+| **class** | 여러 요소가 동일한 class를 가질 수 있다 (스타일 공유 목적) |
+| **id** | 하나의 요소에만 사용할 수 있는 고유 식별자. JavaScript로 특정 요소를 선택할 때 사용 |
+
+### 페이지 소스 보기
+
+어떤 웹사이트든 HTML 소스 코드를 직접 볼 수 있다:
+- **Chrome**: 우클릭 → "페이지 소스 보기" / 단축키 `Ctrl+U`
+- **Safari**: 우클릭 → "Show Page Source"
+
+---
+
+## 섹션 13 — JavaScript
+
+**JavaScript(JS)** = 세계에서 가장 인기 있는 프로그래밍 언어 중 하나로, HTML로 구조를 만들고 CSS로 스타일을 입힌 뒤 **상호작용과 동적 기능**을 추가한다.
+
+- JavaScript 없이는 페이지가 정적인 상태로만 존재한다
+- JavaScript가 있으면 페이지를 실시간으로 업데이트하고, 사용자 이벤트에 반응하며, 애니메이션을 구현할 수 있다
+
+### JavaScript 포함 방법
+
+**방법 1 — 페이지 내 인라인 작성** (`<script>` 태그 안에 직접 코드 작성):
+
+```html
+<script>
+  document.getElementById("demo").innerHTML = "Hack the Planet";
+</script>
+```
+
+**방법 2 — 외부 파일로 분리** (`src` 속성으로 외부 파일 불러오기):
+
+```html
+<script src="/location/of/javascript_file.js"></script>
+```
+
+### getElementById 예시
+
+```javascript
+// ID가 "demo"인 HTML 요소의 내용을 "Hack the Planet"으로 변경
+document.getElementById("demo").innerHTML = "Hack the Planet";
+```
+
+### 이벤트 (Events)
+
+이벤트는 특정 동작이 발생했을 때 JavaScript 코드를 실행시키는 트리거다.
+
+```html
+<!-- onclick: 버튼을 클릭했을 때 demo 요소의 내용을 변경 -->
+<button onclick="document.getElementById('demo').innerHTML = 'Button Clicked!'">
+  Click Me!
+</button>
+```
+
+| 이벤트 | 발동 조건 |
+|--------|----------|
+| `onclick` | 요소를 클릭했을 때 |
+| `onhover` | 마우스를 요소 위에 올렸을 때 |
+
+> 이벤트는 HTML 요소의 속성으로 정의할 수도 있고, JavaScript 코드 내부에서 직접 정의할 수도 있다.
+
+---
+
+## 섹션 14 — 민감 정보 노출 (Sensitive Data Exposure)
+
+**민감 정보 노출** = 웹사이트가 민감한 정보를 평문으로 소스 코드에 남겨두어 제3자에게 노출되는 취약점
+
+### 발생 원인
+
+개발자가 임시로 작성한 로그인 자격증명, 숨겨진 링크, API 키 등을 HTML 주석이나 JavaScript에 그대로 남긴 채 배포한 경우 발생한다.
+
+### 소스 코드 확인 방법
+
+- 브라우저에서 `Ctrl+U` → 현재 페이지의 HTML 소스 코드를 새 탭에서 확인
+
+### 실제 발견 사례 (Ctrl+U로 확인한 소스 코드)
+
+아래는 실습에서 `Ctrl+U`로 확인한 취약한 웹사이트(`https://vulnerable-site.com`)의 HTML 소스 코드다:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>How websites work</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id='html-code-box'>
+        <div id='html-bar'>
+            <span id='html-url'>https://vulnerable-site.com</span>
+        </div>
+        <div class='theme' id='html-code'>
+            <div class='logo-pos'><img src='img/logo_white.png'></div>
+            <p id='login-msg'></p>
+            <form method='post' id='form' autocomplete='off'>
+                <div class='form-field'>
+                    <input class='input-text' type='text' name='username' placeholder='Username...'>
+                </div>
+                <div class='form-field'>
+                    <input class='input-text' type='password' name='password' placeholder='Password...'>
+                </div>
+                <button onclick='login()' type='button' class='login'>Login</button>
+                <!--
+                    TODO: Remove test credentials!
+                    Username: admin
+                    Password: testpasswd
+                -->
+            </form>
+        </div>
+    </div>
+    <script src='js/script.js'></script>
+</body>
+</html>
+```
+
+**핵심 발견**: 24~27번 줄의 HTML 주석 안에 테스트 자격증명이 평문으로 노출되어 있다.
+
+```html
+<!--
+    TODO: Remove test credentials!
+    Username: admin
+    Password: testpasswd
+-->
+```
+
+> HTML 주석(`<!-- ... -->`)은 브라우저 화면에는 보이지 않지만, 소스 코드를 보면 누구나 읽을 수 있다.
+
+### 보안 관점
+
+웹 애플리케이션 보안 점검 시 **가장 먼저 확인하는 사항** 중 하나가 페이지 소스 코드다. 자격증명, 숨겨진 경로, 내부 API 엔드포인트 등이 소스 코드에 그대로 노출된 경우가 실제로 많다.
+
+---
+
+## 섹션 15 — HTML 인젝션 (HTML Injection)
+
+**HTML 인젝션** = 필터링(검증)되지 않은 사용자 입력이 그대로 페이지에 출력될 때, 공격자가 HTML 코드를 삽입해 페이지 구조와 동작을 조작하는 취약점
+
+### 취약한 코드 예시
+
+```javascript
+function sayHi() {
+    const name = document.getElementById('name').value
+    document.getElementById("welcome-msg").innerHTML = "Welcome " + name
+}
+```
+
+사용자가 입력한 `name` 값을 검증 없이 `innerHTML`에 바로 삽입하기 때문에, 입력 내용이 순수한 HTML로 렌더링된다.
+
+### 공격 흐름
+
+```
+① 사용자가 입력 필드에 텍스트 입력
+        ↓
+② 입력 내용이 JavaScript 함수(sayHi)를 통해 페이지에 출력
+        ↓ (입력 검증 없음)
+③ 공격자가 일반 텍스트 대신 HTML 코드를 입력
+        ↓
+④ 브라우저가 HTML 코드를 렌더링 → 공격자가 원하는 콘텐츠가 페이지에 표시됨
+```
+
+### 공격 예시
+
+입력 필드에 아래 HTML 코드를 삽입하면:
+
+```html
+<a href="http://hacker.com"></a>
+```
+
+페이지에 실제 링크로 렌더링되어 사용자가 클릭하면 악성 사이트로 이동하게 된다.
+
+### 방어 방법 — 입력 검증 (Input Validation / Sanitization)
+
+- **프론트엔드 검증**: 브라우저에서 JavaScript로 입력값 검사
+- **백엔드 검증**: 서버에서 HTML 태그 제거 또는 이스케이프 처리
+- **주의**: 프론트엔드 검증만으로는 불충분하다. 공격자가 HTTP 요청을 직접 조작해 우회할 수 있기 때문에, **백엔드 검증이 반드시 필요하다**
+
+> HTML 인젝션의 더 위험한 형태가 **XSS(Cross-Site Scripting)**다. `<script>` 태그를 삽입하면 피해자의 브라우저에서 악성 JavaScript가 실행될 수 있다.
+
+---
+
+## 실습 기록 (How Websites Work)
+
+### 실습 1 — HTML 에디터 실습
+
+**목표**: TryHackMe HTML 에디터에서 고양이 웹사이트의 깨진 이미지를 수정하고 개 이미지를 추가
+
+**실습 내용 및 플래그**
+
+| 과제 | 내용 | 플래그 |
+|------|------|--------|
+| 깨진 이미지 수정 | `src` 경로 오류로 표시되지 않던 이미지를 수정 | `HTMLHERO` |
+| 개 이미지 추가 | 11번째 줄에 `<img src='img/dog-1.png'>` 태그 추가 | `DOGHTML` |
+
+**배운 점**
+
+1. `<img>` 태그의 `src` 속성에 잘못된 경로가 지정되면 이미지가 깨져 표시된다. 브라우저는 이 오류를 조용히 처리하기 때문에, 화면만 봐서는 원인을 알기 어렵다. 소스 코드를 직접 열어 경로를 확인하는 습관이 필요한 이유다.
+2. HTML 태그 하나(`<img src='img/dog-1.png'>`)를 추가하는 것만으로도 페이지에 완전히 새로운 콘텐츠가 렌더링된다. 이처럼 HTML 삽입이 가능한 환경이라면 공격자는 의도하지 않은 콘텐츠를 페이지에 표시할 수 있다.
+3. 브라우저가 렌더링한 결과물과 소스 코드 사이에는 차이가 있다. 화면에 보이는 것만 보지 않고, `Ctrl+U`로 소스 코드를 직접 확인하는 습관은 웹 보안 분석의 첫걸음이다.
+
+### 실습 2 — JavaScript 코드 삽입 실습
+
+**목표**: TryHackMe 에디터에서 JavaScript 코드를 추가해 HTML 요소의 내용을 동적으로 변경
+
+**실습 내용 및 플래그**
+
+| 과제 | 내용 | 플래그 |
+|------|------|--------|
+| JS로 텍스트 변경 | `demo` 요소의 내용을 "Hack the Planet"으로 변경하는 JS 추가 | `JSISFUN` |
+| 버튼 이벤트 추가 | 클릭 시 텍스트가 "Button Clicked!"로 변경되는 버튼 추가 | 답변 불필요 |
+
+**배운 점**
+
+1. `document.getElementById("demo").innerHTML = "Hack the Planet"` — 이 코드는 ID가 `demo`인 HTML 요소의 내용을 JavaScript로 실시간 변경한다. 이처럼 JavaScript는 페이지가 로드된 후에도 HTML 구조를 자유롭게 수정할 수 있다. 공격자가 악성 JavaScript를 삽입할 수 있는 환경이라면 페이지 전체를 조작하는 것도 가능하다.
+2. `onclick` 이벤트 핸들러를 HTML 요소에 직접 정의하면 버튼 클릭 시 JavaScript 코드가 실행된다. 이를 악용하면 외관상 정상적으로 보이는 버튼이 클릭 시 악성 동작을 수행하도록 만들 수 있다.
+3. JavaScript 코드는 외부 파일로 분리해 `<script src="...">` 형태로 불러올 수 있다. 소스 보기를 통해 외부 JS 파일 경로를 확인하고 직접 접근해 코드를 분석하는 것은 보안 테스트에서 중요한 정보 수집 방법이다.
+
+### 실습 3 — 민감 정보 노출 (Ctrl+U 소스 확인)
+
+**목표**: `Ctrl+U`로 취약한 웹사이트의 HTML 소스를 확인해 숨겨진 자격증명 발견
+
+**발견한 정보**:
+- 파일: 24~27번 줄 HTML 주석 내부
+- 내용: `Username: admin` / `Password: testpasswd`
+
+**플래그**: `testpasswd`
+
+**배운 점**
+
+1. HTML 주석(`<!-- ... -->`)은 브라우저 화면에는 보이지 않지만 `Ctrl+U`(소스 보기)를 누르면 누구나 읽을 수 있다. "TODO: Remove test credentials!"라는 메모가 그대로 운영 서버에 배포된 것처럼, 개발 단계의 임시 자격증명이 실수로 노출되는 일이 실제로 자주 발생한다.
+2. 소스 코드에서 발견한 자격증명(`admin:testpasswd`)으로 해당 사이트에 바로 로그인이 가능하다. 더 나아가 사용자가 다른 사이트에서도 같은 비밀번호를 사용한다면, 이를 이용한 크리덴셜 스터핑(Credential Stuffing) 공격으로 다른 계정까지 탈취당할 수 있다.
+3. 웹 애플리케이션 보안 점검 시 가장 먼저 수행하는 작업 중 하나가 소스 코드 검토다. HTML 주석, JavaScript 변수, 외부 파일 경로 등에 숨겨진 민감 정보가 있는지 확인하는 것은 기본 체크리스트에 반드시 포함된다.
+
+### 실습 4 — HTML 인젝션 실습
+
+**목표**: 입력 필드에 HTML 코드를 삽입해 페이지에 악성 링크가 렌더링되는 취약점 체험
+
+**삽입한 코드**:
+```html
+<a href="http://hacker.com"></a>
+```
+
+**플래그**: `HTML_INJECTION`
+
+**배운 점**
+
+1. 사용자 입력이 검증(Sanitization) 없이 `innerHTML`에 바로 삽입되면 HTML 인젝션이 가능하다. `<a href="http://hacker.com"></a>`를 입력 필드에 넣었을 때 실제 링크로 렌더링된 것처럼, 공격자는 원하는 HTML 코드를 페이지에 삽입할 수 있다.
+2. HTML 인젝션의 더 위험한 형태가 XSS(Cross-Site Scripting)다. `<script>` 태그를 삽입하면 피해자의 브라우저에서 악성 JavaScript가 실행되어 세션 탈취, 키로깅, 피싱 페이지 표시 등이 가능해진다. 입력 필드는 항상 잠재적인 공격 진입점으로 취급해야 한다.
+3. 입력 검증은 프론트엔드(브라우저)와 백엔드(서버) 양쪽에서 반드시 수행해야 한다. 프론트엔드 검증만 있으면 공격자가 HTTP 요청을 직접 조작(예: Burp Suite로 가로채기)해 검증 로직을 완전히 우회할 수 있기 때문이다.
+
+---
+
+## 모든 것을 종합해 보면 (Putting It All Together)
+
+---
+
+## 섹션 16 — 전체 웹 요청 흐름 개요
+
+이전 섹션들에서 배운 DNS, HTTP, 웹 서버, 브라우저 렌더링이 실제로 어떻게 연결되는지 정리한다.
+
+웹사이트에 접속할 때 컴퓨터는 통신해야 할 서버의 IP 주소를 알아야 한다:
+
+```
+브라우저에서 요청
+      ↓
+DNS로 IP 주소 확인
+      ↓
+웹 서버에 연결
+      ↓
+웹사이트 표시
+```
+
+**전체 흐름 요약**:
+
+| 단계 | 프로토콜/기술 | 동작 |
+|------|--------------|------|
+| ① IP 주소 탐색 | DNS | 도메인명을 IP 주소로 변환 |
+| ② 웹 서버 통신 | HTTP/HTTPS | 특정 명령어 세트(메서드)로 서버와 통신 |
+| ③ 리소스 반환 | HTTP 응답 | 서버가 HTML, JavaScript, CSS, 이미지 등 반환 |
+| ④ 브라우저 렌더링 | 브라우저 엔진 | 받은 데이터를 조합해 웹사이트를 화면에 표시 |
+
+> 웹이 더욱 효율적으로 작동하고 추가 기능을 제공하는 데 도움이 되는 기타 구성 요소들도 있다.
+
+---
+
+## 섹션 17 — 기타 구성 요소
+
+### 로드 밸런싱 (Load Balancing)
+
+트래픽이 매우 많은 웹사이트는 서버 한 대로 모든 요청을 처리할 수 없다. 이때 **로드 밸런서**가 여러 서버 사이에 트래픽을 분산한다.
+
+**로드 밸런서의 두 가지 역할**:
+
+| 역할 | 설명 |
+|------|------|
+| **트래픽 분산** | 들어오는 HTTP/HTTPS 요청을 여러 서버에 나눠 전달. 알고리즘: 라운드 로빈(Round-Robin), 가중치 기반(Weighted) 등 |
+| **상태 확인 (Health Check)** | 서버가 정상 동작 중인지 주기적으로 확인. 응답 없는 서버로는 요청을 전송하지 않음 |
+
+```
+클라이언트 요청
+      ↓
+  로드 밸런서
+   ↙   ↓   ↘
+서버1  서버2  서버3
+```
+
+### CDN (콘텐츠 전송 네트워크, Content Delivery Network)
+
+**CDN** = 정적 파일(JavaScript, CSS, 이미지, 동영상 등)을 전 세계 수천 개의 서버에 분산 저장하는 서비스
+
+- 사용자의 요청이 들어오면 **가장 가까운 서버**에서 파일을 전달 → 응답 속도 향상
+- 지구 반대편 원본 서버 대신 물리적으로 가까운 서버가 파일을 보내므로 지연(Latency)이 줄어든다
+
+### 데이터베이스 (Database)
+
+웹사이트는 사용자 정보, 게시물, 상품 데이터 등을 저장하고 불러와야 한다. 웹 서버는 **데이터베이스와 통신**해 데이터를 저장·조회한다.
+
+| 종류 | 유형 |
+|------|------|
+| MySQL, MSSQL, PostgreSQL | 관계형(RDBMS) |
+| MongoDB | NoSQL 도큐먼트 |
+| GraphQL | 쿼리 언어 (API 레이어) |
+
+### WAF (웹 애플리케이션 방화벽, Web Application Firewall)
+
+**WAF** = 웹 서버와 인터넷 사이에 위치하여 악성 트래픽으로부터 웹 서버를 보호하는 방화벽
+
+**주요 기능**:
+- **요청 분석**: 실제 사용자 요청처럼 보이는 악성 패턴 탐지 및 차단
+- **속도 제한 (Rate Limiting)**: 특정 IP가 일정 시간 내에 너무 많은 요청을 보내는 것을 차단 (DDoS 방어)
+- **IP 필터링**: 알려진 악성 IP로부터의 요청 차단
+
+```
+클라이언트 요청
+      ↓
+    WAF (악성 요청 차단)
+      ↓
+  로드 밸런서
+      ↓
+   웹 서버
+```
+
+---
+
+## 섹션 18 — 웹 서버 작동 방식
+
+### 웹 서버 소프트웨어
+
+**웹 서버**는 HTTP(S) 요청을 수신하고 파일이나 데이터를 반환하는 소프트웨어다.
+
+| 소프트웨어 | 특징 |
+|-----------|------|
+| **Apache** | 오픈소스, 가장 널리 사용 |
+| **Nginx** | 고성능, 리버스 프록시로도 사용 |
+| **IIS** | Windows Server용 마이크로소프트 웹 서버 |
+| **NodeJS** | JavaScript 기반 비동기 서버 |
+
+### 가상 호스트 (Virtual Hosts)
+
+하나의 웹 서버에서 **여러 도메인**을 동시에 호스팅할 수 있다. 웹 서버는 HTTP 요청의 `Host` 헤더를 확인해 어떤 도메인으로 들어온 요청인지 판단하고, 각각 다른 파일 경로로 라우팅한다.
+
+```
+one.com 요청   →  /var/www/website_one
+two.com 요청   →  /var/www/website_two
+```
+
+하나의 웹 서버에 호스팅할 수 있는 웹사이트 수에는 제한이 없다.
+
+### 정적 콘텐츠 vs 동적 콘텐츠
+
+| 구분 | 정의 | 예시 |
+|------|------|------|
+| **정적 (Static)** | 변경되지 않는 파일. 서버에서 클라이언트로 그대로 복사 | HTML, CSS, JS, 이미지, 동영상 |
+| **동적 (Dynamic)** | 요청할 때마다 실시간으로 생성되는 콘텐츠 | 블로그 최신 게시물, 사용자별 맞춤 페이지 |
+
+### 백엔드 스크립트 언어
+
+동적 콘텐츠는 **백엔드 언어**로 서버에서 처리된다. 클라이언트는 처리 결과(HTML)만 받으며, **백엔드 코드 자체는 볼 수 없다**.
+
+```php
+<!-- 서버에서 실행되는 PHP 코드 (클라이언트에게 보이지 않음) -->
+<html><body>Hello <?php echo $_GET["name"]; ?></body></html>
+```
+
+서버가 처리한 뒤 클라이언트에게 전달되는 결과:
+
+```html
+<!-- 브라우저가 받는 최종 HTML -->
+<html><body>Hello adam</body></html>
+```
+
+주요 백엔드 언어: PHP, Python, Ruby, NodeJS, Java 등
+
+---
+
+## 실습 기록 (Putting It All Together)
+
+### 실습 1 — 전체 웹 요청 단계 순서 맞추기 퀴즈
+
+**목표**: 브라우저에서 웹사이트를 요청할 때 일어나는 11단계를 올바른 순서로 배열
+
+**정답 순서**:
+
+| 순서 | 단계 |
+|------|------|
+| 1 | 브라우저에서 tryhackme.com 요청 (Request tryhackme.com in your browser) |
+| 2 | 로컬 캐시에서 IP 주소 확인 (Check Local Cache for IP Address) |
+| 3 | 재귀 DNS 서버에서 주소 확인 (Check your Recursive DNS Server for Address) |
+| 4 | 루트 서버에 권한 있는 DNS 서버 위치 질의 (Query root server to find authoritative DNS Server) |
+| 5 | 권한 있는 DNS 서버가 IP 주소 응답 (Authoritative DNS server advises the IP address for the website) |
+| 6 | 요청이 WAF를 통과 (Request passes through a Web Application Firewall) |
+| 7 | 요청이 로드 밸런서를 통과 (Request passes through a Load Balancer) |
+| 8 | 80번(HTTP) 또는 443번(HTTPS) 포트로 웹 서버에 연결 (Connect to Webserver on port 80 or 443) |
+| 9 | 웹 서버가 GET 요청 수신 (Web server receives the GET request) |
+| 10 | 웹 애플리케이션이 데이터베이스와 통신 (Web Application talks to Database) |
+| 11 | 브라우저가 HTML을 렌더링해 웹사이트 표시 (Your Browser renders the HTML into a viewable website) |
+
+**플래그**: `THM{YOU_GOT_THE_ORDER}`
+
+**배운 점**
+
+1. 웹사이트 하나를 보기까지 DNS 조회 → WAF 통과 → 로드 밸런서 → 웹 서버 → 데이터베이스 → 브라우저 렌더링의 11단계가 순서대로 일어난다. 각 단계가 이 모듈에서 배운 별개의 기술들이며, 실제 운영 환경에서는 이 모든 단계가 수백 밀리초 안에 완료된다.
+2. WAF와 로드 밸런서가 DNS 응답 이후, 웹 서버 연결 이전에 위치한다는 점이 중요하다. 공격 트래픽은 웹 서버에 도달하기 전에 WAF에서 먼저 걸러지고, 정상 트래픽은 로드 밸런서가 분산시킨다. 이 순서를 알면 보안 아키텍처를 이해하는 데 도움이 된다.
+3. 웹 서버가 GET 요청을 받은 후 데이터베이스와 통신한다는 점은 SQL Injection 공격의 진입점을 이해하는 데 직결된다. 웹 서버가 사용자 입력을 검증 없이 데이터베이스 쿼리에 삽입하면 공격자가 임의의 쿼리를 실행할 수 있다.
