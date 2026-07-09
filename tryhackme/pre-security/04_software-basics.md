@@ -748,3 +748,12 @@ SELECT * FROM Orders ORDER BY price DESC;      -- 가격 내림차순 정렬
 1. `SELECT`는 데이터를 읽기만 하고 변경하지 않는다. 쿼리를 잘못 작성해도 데이터가 손상될 위험이 없어서 SQL 입문 시 가장 먼저 익히기에 안전한 명령어다.
 2. `WHERE` 절로 조건에 맞는 행만 걸러낸다. 문자열 조건 검색 시 반드시 작은따옴표(`'`)를 사용한다(`WHERE drink = 'Coffee'`). 따옴표를 빠뜨리면 오류가 발생한다.
 3. `ORDER BY 열이름 DESC`로 내림차순 정렬, `ORDER BY 열이름`만 쓰면 기본값인 오름차순(ASC)으로 정렬된다. SQL은 기본값이 있어 모든 키워드를 외우지 않아도 동작하는 경우가 많다.
+
+---
+
+## 관련 노트
+
+- ⬅️ 이전: [모듈 3 — 운영 체제 기초](03_operating-systems-basics.md)
+- ➡️ 다음: [모듈 5 — 네트워크 기초](05_what-is-networking.md)
+- 🔗 관련: [모듈 6 — 웹은 어떻게 작동할까?](06_how-web-works.md) — 여기서 배운 SQL이 모듈 6의 SQL Injection 이해로 이어짐
+- 🏠 전체 목차: [Security Study 홈](../../README.md)

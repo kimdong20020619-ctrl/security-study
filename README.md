@@ -8,13 +8,13 @@ TryHackMe Pre-Security Path 학습 기록
 
 | 모듈 | 시작일 | 완료일 | 복습일 |
 |------|--------|--------|--------|
-| 모듈 1 — 사이버 보안 소개 | 2026-06-24 | 2026-06-24 | |
-| 모듈 2 — 컴퓨터 기초 | 2026-06-24 | 2026-06-25 | |
-| 모듈 3 — 운영 체제 기초 | 2026-06-25 | 2026-06-28 | |
-| 모듈 4 — 소프트웨어 기초 | 2026-06-28 | 2026-06-29 | |
-| 모듈 5 — 네트워크 기초 | 2026-06-30 | 2026-06-30 | |
-| 모듈 6 — 웹은 어떻게 작동할까? | 2026-07-01 | 2026-07-01 | |
-| 모듈 7 — 공격과 방어 | 2026-07-01 | 2026-07-01 | |
+| [모듈 1 — 사이버 보안 소개](tryhackme/pre-security/01_cyber-security-intro.md) | 2026-06-24 | 2026-06-24 | |
+| [모듈 2 — 컴퓨터 기초](tryhackme/pre-security/02_computer-basics.md) | 2026-06-24 | 2026-06-25 | |
+| [모듈 3 — 운영 체제 기초](tryhackme/pre-security/03_operating-systems-basics.md) | 2026-06-25 | 2026-06-28 | |
+| [모듈 4 — 소프트웨어 기초](tryhackme/pre-security/04_software-basics.md) | 2026-06-28 | 2026-06-29 | |
+| [모듈 5 — 네트워크 기초](tryhackme/pre-security/05_what-is-networking.md) | 2026-06-30 | 2026-06-30 | |
+| [모듈 6 — 웹은 어떻게 작동할까?](tryhackme/pre-security/06_how-web-works.md) | 2026-07-01 | 2026-07-01 | |
+| [모듈 7 — 공격과 방어](tryhackme/pre-security/07_offensive-and-defensive.md) | 2026-07-01 | 2026-07-01 | |
 
 ---
 
