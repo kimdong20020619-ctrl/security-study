@@ -399,4 +399,4 @@ https://www.example.com/page.html
 - ⬅️ 이전: [모듈 1 — 사이버 보안 소개](01_cyber-security-intro.md)
 - ➡️ 다음: [모듈 3 — 운영 체제 기초](03_operating-systems-basics.md)
 - 🔗 관련: [모듈 5 — 네트워크 기초](05_what-is-networking.md) — 클라이언트/서버·가상화 개념이 네트워크 이해의 기초
-- 🏠 전체 목차: [Security Study 홈](../../README.md)
+- 🏠 전체 목차: [Security Study 홈](tryhackme/README.md)

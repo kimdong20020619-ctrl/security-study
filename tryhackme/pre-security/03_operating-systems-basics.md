@@ -658,4 +658,4 @@ cat flag.txt
 - ⬅️ 이전: [모듈 2 — 컴퓨터 기초](02_computer-basics.md)
 - ➡️ 다음: [모듈 4 — 소프트웨어 기초](04_software-basics.md)
 - 🔗 관련: [모듈 7 — 공격과 방어](07_offensive-and-defensive.md) — 계정 권한·비밀번호 관리가 방어적 보안과 직결
-- 🏠 전체 목차: [Security Study 홈](../../README.md)
+- 🏠 전체 목차: [Security Study 홈](tryhackme/README.md)

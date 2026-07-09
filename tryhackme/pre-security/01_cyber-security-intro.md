@@ -96,4 +96,4 @@ dirb http://fakebank.thm/
 
 - ➡️ 다음: [모듈 2 — 컴퓨터 기초](02_computer-basics.md)
 - 🔗 관련: [모듈 7 — 공격과 방어](07_offensive-and-defensive.md) — 여기서 맛본 공격적/방어적 보안 개념의 심화판
-- 🏠 전체 목차: [Security Study 홈](../../README.md)
+- 🏠 전체 목차: [Security Study 홈](tryhackme/README.md)

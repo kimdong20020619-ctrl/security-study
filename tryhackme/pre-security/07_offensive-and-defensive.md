@@ -1199,4 +1199,4 @@ hydra -l admin -P /pencilList.lst www.onlineshop.thm http-form-post "/login?user
 - 🔗 관련: [모듈 1 — 사이버 보안 소개](01_cyber-security-intro.md) — 공격/방어 개념의 출발점
 - 🔗 관련: [모듈 6 — 웹은 어떻게 작동할까?](06_how-web-works.md) — WAF·웹 공격 경로의 배경 지식
 - 🔗 관련: [모듈 3 — 운영 체제 기초](03_operating-systems-basics.md) — 계정 권한 관리
-- 🏠 전체 목차: [Security Study 홈](../../README.md)
+- 🏠 전체 목차: [Security Study 홈](tryhackme/README.md)

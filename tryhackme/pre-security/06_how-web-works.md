@@ -949,4 +949,4 @@ two.com 요청   →  /var/www/website_two
 - ➡️ 다음: [모듈 7 — 공격과 방어](07_offensive-and-defensive.md)
 - 🔗 관련: [모듈 4 — 소프트웨어 기초](04_software-basics.md) — SQL 지식이 SQL Injection 진입점 이해로 연결
 - 🔗 관련: [모듈 5 — 네트워크 기초](05_what-is-networking.md) — 웹은 DNS·TCP 위에서 동작
-- 🏠 전체 목차: [Security Study 홈](../../README.md)
+- 🏠 전체 목차: [Security Study 홈](tryhackme/README.md)

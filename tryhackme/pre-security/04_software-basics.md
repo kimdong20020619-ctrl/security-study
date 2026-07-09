@@ -756,4 +756,4 @@ SELECT * FROM Orders ORDER BY price DESC;      -- 가격 내림차순 정렬
 - ⬅️ 이전: [모듈 3 — 운영 체제 기초](03_operating-systems-basics.md)
 - ➡️ 다음: [모듈 5 — 네트워크 기초](05_what-is-networking.md)
 - 🔗 관련: [모듈 6 — 웹은 어떻게 작동할까?](06_how-web-works.md) — 여기서 배운 SQL이 모듈 6의 SQL Injection 이해로 이어짐
-- 🏠 전체 목차: [Security Study 홈](../../README.md)
+- 🏠 전체 목차: [Security Study 홈](tryhackme/README.md)

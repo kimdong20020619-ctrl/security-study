@@ -1147,4 +1147,4 @@ TCP: computer3 received TCP packet, sending ACK to computer1
 - ⬅️ 이전: [모듈 4 — 소프트웨어 기초](04_software-basics.md)
 - ➡️ 다음: [모듈 6 — 웹은 어떻게 작동할까?](06_how-web-works.md)
 - 🔗 관련: [모듈 2 — 컴퓨터 기초](02_computer-basics.md) — 모듈 2의 클라이언트/서버 기본 개념의 심화
-- 🏠 전체 목차: [Security Study 홈](../../README.md)
+- 🏠 전체 목차: [Security Study 홈](tryhackme/README.md)
