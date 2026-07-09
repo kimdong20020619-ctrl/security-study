@@ -1,10 +1,10 @@
 # TryHackMe — Pre-Security Path
 
 ## 진행 현황
-- [ ] Network Fundamentals
-- [ ] How The Web Works
-- [ ] Linux Fundamentals
-- [ ] Windows Fundamentals
+- [x] Network Fundamentals
+- [x] How The Web Works
+- [x] Linux Fundamentals
+- [x] Windows Fundamentals
 
 ---
 
