@@ -11,6 +11,11 @@ SSH(auth.log)·웹(access.log) 로그에서 공격 징후를 탐지하는 관제
 - Python 3.10+ (표준 라이브러리만)
 - 레포: `C:\Users\kimdo\Documents\GitHub\log-analyzer`
 
+## 🔰 처음이라면 (공통 준비, 1분)
+1. 시작 메뉴 → **PowerShell** 실행 → `python --version` 입력.
+   - `Python 3.10` 이상 나오면 OK. 안 나오면 `python.org`에서 3.12 설치(설치 첫 화면 **"Add python.exe to PATH" 체크**) → PowerShell 새로 열고 다시 확인.
+2. 아래 "실행 방법" 명령을 **위→아래 순서대로 복붙**. (`$env:PYTHONPATH="src"`는 창 새로 열 때마다 한 번)
+
 ## 실행 방법 (PowerShell)
 ```powershell
 cd C:\Users\kimdo\Documents\GitHub\log-analyzer
