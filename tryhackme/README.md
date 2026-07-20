@@ -16,6 +16,12 @@ TryHackMe Pre-Security Path 학습 기록
 | [모듈 6 — 웹은 어떻게 작동할까?](tryhackme/pre-security/06_how-web-works.md) | 2026-07-01 | 2026-07-01 | |
 | [모듈 7 — 공격과 방어](tryhackme/pre-security/07_offensive-and-defensive.md) | 2026-07-01 | 2026-07-01 | |
 
+### Cyber Security 101 (SEC1) — 진행 중 (약 46%)
+
+| 모듈 | 시작일 | 완료일 | 복습일 |
+|------|--------|--------|--------|
+| [모듈 1 — Start Your Cyber Security Journey](tryhackme/cyber-security-101/01_start-your-cyber-security-journey.md) | 2026-07 | ✅ | |
+
 ---
 
 # 🔐 Security Learning Roadmap (TryHackMe)
