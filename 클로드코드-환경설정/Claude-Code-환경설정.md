@@ -69,6 +69,28 @@ Anthropic 공식 문서([Create plugins](https://code.claude.com/docs/en/plugins
 - ⚠️ 공식 보안 경고: "Plugins and marketplaces are highly trusted components that can execute arbitrary code on your machine... Only install from sources you trust." → harness-100·find-skills 둘 다 Anthropic 공식/커뮤니티 마켓플레이스가 아닌 서드파티 소스라서, 이 경고가 그대로 적용됨. Apache 2.0으로 코드가 공개돼 있다는 것과 Anthropic이 검증했다는 것은 별개.
 - 참고: 공식 문서는 CLAUDE.md를 "짧고 사람이 읽기 쉽게, 필요한 규칙만" 유지하라고 권장함(`~/.claude/CLAUDE.md`가 현재 상당히 긺 — 오늘 논의 대상은 아니었지만 참고로 기록).
 
+## 4. 모델별 튜닝 가이드 검증 (Sonnet 5 · Opus 4.8 · Fable 5, 2026-07-23)
+
+`~/.claude/CLAUDE.md` 9장(모델별 프롬프트 튜닝 지침)을 Anthropic 공식 `claude-api` 스킬에 내장된 모델 마이그레이션 가이드(`shared/model-migration.md` — Migrating to Opus 4.7/4.8, Migrating to Claude Sonnet 5, Migrating to Claude Fable 5) 원문과 문장 단위로 대조 검증함.
+
+### 검증 결과 요약
+
+| 항목 | 상태 |
+|------|------|
+| Sonnet 5의 "지시를 문자 그대로 따름", Opus 4.8의 narration↑/ask-rate↑/도구사용 보수화, Fable 5의 "과잉 지시가 오히려 해로움"·"long-horizon" | ✅ 공식 문서와 일치 확인 |
+| Sonnet 5: thinking이 꺼지면 도구 사용 저하 | ➕ 보정 추가 |
+| Sonnet·Opus 공통: 코드리뷰에 "심각한 것만 보고해" 지시 시 실제 탐지력과 무관하게 보고 개수 감소(리콜 저하) | ➕ 보정 추가 |
+| Opus 4.8: 웹 검색이 "얕고 넓게" 트리거되는 패턴, 도구 description에 트리거 조건을 넣는 게 시스템 프롬프트보다 효과적 | ➕ 보정 추가 |
+| Fable 5 안전 분류기(연구용 생물학·사이버보안 대상)는 공식 문서상 **Fable 5 모델 자체에만** 명시됨 — Opus 4.8도 동일 분류기를 갖는다는 공식 근거는 못 찾음 | ⚠️ 미검증 — 기존에 "Fable5/Opus 공동 차단"으로 알고 있던 가정 재검토 필요 |
+
+### Auto mode와 모델별 특성
+
+Auto mode(별도 분류기가 위험 행동만 차단)는 모델 종류와 무관하게 동일하게 동작함. 반면 "사소한 결정에 되묻는 빈도"·"말수" 같은 모델별 성향은 auto mode와 별개로 그대로 남음 — Opus 4.8은 auto mode에서도 사소한 선택을 질문 형태로 물어볼 수 있음(분류기가 막는 대상이 아님).
+
+### 보안 작업 관련 참고
+
+`Cyber Verification Program`/"Real-time Cyber Safeguards"로 보안 관련 작업이 Fable 5·Opus 4.8에서 차단되는 문제가 실측된 바 있음(2026-07-10). 이번 검증에서 확인한 공식 문서는 이 중 "모델 내장 안전 분류기"가 Fable 5 전용이라고만 서술 — 계정/워크스페이스 단위의 "Real-time Cyber Safeguards" 기능(모델 무관하게 걸릴 수 있음)과는 별개 메커니즘일 가능성이 있음. 결론적으로 보안 작업은 여전히 Sonnet 5로 진행하는 게 안전.
+
 ## 관련 문서
 
 - 상세 후보 목록·설치 근거는 Claude Code 메모리 `reference_harness100_candidates.md`에도 저장돼 있음(세션 간 자동 상기용)
